@@ -299,11 +299,11 @@ public class ProductDaoImpl implements ProductDao{
 
 	@Override
 	public String updateProductWithoutImage(String prevProductId, ProductBean updatedProduct) {
-		String status = "Product Updation Failed!";
+		String status = "Product Update Failed!";
 		
 		if(!prevProductId.equals(updatedProduct.getProdId())) {
 			
-			status = "Both Products are Different, Updation Failed!";
+			status = "Both Products are Different, Update Failed!";
 			
 			return status;
 		}

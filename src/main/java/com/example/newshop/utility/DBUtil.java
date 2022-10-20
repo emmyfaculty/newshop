@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class DBUtil {
-	private static Connection  conn;
+//	private static Connection  conn;
 //
 //	static ResourceBundle rb = ResourceBundle.getBundle("com.example.newshop.utility.database");
 //
@@ -16,23 +16,25 @@ public class DBUtil {
 //
 //	public static Connection provideConnection() {
 //
+//		 Connection  conn;
+//
 //
 //		try {
-//			if(conn== null || conn.isClosed()) {
+//			//if(conn== null || conn.isClosed()) {
 //
 //				try {
 //					Class.forName(" com.mysql.jdbc.Driver");
 //
-//				} catch (ClassNotFoundException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+////				} catch (ClassNotFoundException e) {
+////					// TODO Auto-generated catch block
+////					e.printStackTrace();
+////				}
 //
-//				conn = DriverManager.getConnection("  jdbc:mysql://localhost:3306/shopping", "root", "6164Emma@");
+//				conn = DriverManager.getConnection("  jdbc:mysql://localhost:3306/shopping", "root", "123456");
 //				System.out.println("Connection opened successfully");
 //
-//			}
-//		} catch (SQLException e) {
+//		//	}
+//		} catch (SQLException | ClassNotFoundException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}

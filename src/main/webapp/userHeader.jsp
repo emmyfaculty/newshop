@@ -3,7 +3,7 @@
 <%@ page import="com.example.newshop.dao.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
-<title>Ellison Electronics</title>
+<title>Emason Electronics</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -21,7 +21,7 @@
 	%>
 <!--Company Header Starting  -->
 <div class="jumbotron text-center">
-  <h1>Ellison Electronics</h1>
+  <h1>Emason Electronics</h1>
   <p>We specialize in Electronics</p>
   <form class="form-inline">
     <div class="input-group">

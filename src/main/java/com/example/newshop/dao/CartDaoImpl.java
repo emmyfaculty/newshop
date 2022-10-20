@@ -28,7 +28,7 @@ public class CartDaoImpl implements CartDao{
 		
 		try {
 			
-			ps = con.prepareStatement("select * from usercart where username=? and prodid=?");
+			ps = con.prepareStatement("select * from usercart where userid=? and prodid=?");
 			
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
@@ -94,7 +94,7 @@ public class CartDaoImpl implements CartDao{
 		
 		try {
 			
-			ps = con.prepareStatement("select * from usercart where username=?");
+			ps = con.prepareStatement("select * from usercart where userid=?");
 			
 			ps.setString(1, userId);
 			
@@ -103,7 +103,7 @@ public class CartDaoImpl implements CartDao{
 			while(rs.next()) {
 				CartBean cart = new CartBean();
 				
-				cart.setUserId(rs.getString("username"));
+				cart.setUserId(rs.getString("userid"));
 				cart.setProdId(rs.getString("prodid"));
 				cart.setQuantity(Integer.parseInt(rs.getString("quantity")));
 				
@@ -137,15 +137,18 @@ public class CartDaoImpl implements CartDao{
 		ResultSet rs = null;
 		
 		try {
-			ps = con.prepareStatement("select sum(quantity) from usercart where username=?");
+			ps = con.prepareStatement("select sum(quantity) from usercart where userid=?");
 			
 			ps.setString(1, userId);
 			
 			rs = ps.executeQuery();
 			
-			if(!rs.wasNull() && rs.next()) 
+//			if(!rs.wasNull() && rs.next())
+//				count = rs.getInt(1);
+//
+			if(rs != null && rs.next()){
 				count = rs.getInt(1);
-			
+			}
 		} catch (SQLException e) {
 	
 			e.printStackTrace();
@@ -170,7 +173,7 @@ public class CartDaoImpl implements CartDao{
 		
 		try {
 			
-			ps = con.prepareStatement("select * from usercart where username=? and prodid=?");
+			ps = con.prepareStatement("select * from usercart where userid=? and prodid=?");
 			
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
@@ -184,7 +187,7 @@ public class CartDaoImpl implements CartDao{
 				prodQuantity -= 1;
 				
 				if(prodQuantity>0) {
-					ps2 = con.prepareStatement("update usercart set quantity=? where username=? and prodid=?");
+					ps2 = con.prepareStatement("update usercart set quantity=? where userid=? and prodid=?");
 					
 					ps2.setInt(1, prodQuantity);
 					
@@ -199,7 +202,7 @@ public class CartDaoImpl implements CartDao{
 				}
 				else if(prodQuantity <=0) {
 					
-					ps2 = con.prepareStatement("delete from usercart where username=? and prodid=?");
+					ps2 = con.prepareStatement("delete from usercart where userid=? and prodid=?");
 					
 					ps2.setString(1, userId);
 					
@@ -244,7 +247,7 @@ public class CartDaoImpl implements CartDao{
 		
 		try {
 			
-			ps = con.prepareStatement("delete from usercart where username=? and prodid=?");
+			ps = con.prepareStatement("delete from usercart where userid=? and prodid=?");
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
 			
@@ -283,7 +286,7 @@ public class CartDaoImpl implements CartDao{
 		
 		try {
 			
-			ps = con.prepareStatement("select * from usercart where username=? and prodid=?");
+			ps = con.prepareStatement("select * from usercart where userid=? and prodid=?");
 			
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
@@ -294,7 +297,7 @@ public class CartDaoImpl implements CartDao{
 				
 				
 				if(prodQty >0) {
-					ps2 = con.prepareStatement("update usercart set quantity=? where username=? and prodid=?");
+					ps2 = con.prepareStatement("update usercart set quantity=? where userid=? and prodid=?");
 				
 					ps2.setInt(1, prodQty);
 				
@@ -308,7 +311,7 @@ public class CartDaoImpl implements CartDao{
 						status  = "Product Successfully Updated to Cart!";
 				}
 				else if(prodQty == 0) {
-					ps2 = con.prepareStatement("delete from usercart where username=? and prodid=?");
+					ps2 = con.prepareStatement("delete from usercart where userid=? and prodid=?");
 				
 					ps2.setString(1, userId);
 				
@@ -324,11 +327,11 @@ public class CartDaoImpl implements CartDao{
 				
 				ps2 = con.prepareStatement("insert into usercart values(?,?,?)");
 				
-				ps2.setString(1, userId);
+				ps2.setInt(1, prodQty);
 				
-				ps2.setString(2, prodId);
+				ps2.setString(2, userId);
 				
-				ps2.setInt(3, prodQty);
+				ps2.setString(3, prodId);
 				
 				int k = ps2.executeUpdate();
 				
@@ -360,14 +363,18 @@ public class CartDaoImpl implements CartDao{
 		ResultSet rs = null;
 		
 		try {
-			ps = con.prepareStatement("select sum(quantity) from usercart where username=? and prodid=?");
+			ps = con.prepareStatement("select sum(quantity) from usercart where userid=? and prodid=?");
 			ps.setString(1, userId);
 			ps.setString(2, prodId);
 			rs = ps.executeQuery();
 			
-			if(!rs.wasNull() && rs.next())
+//			if(!rs.wasNull() && rs.next())
+//				count = rs.getInt(1);
+//
+
+			if(rs != null && rs.next()){
 				count = rs.getInt(1);
-			
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
